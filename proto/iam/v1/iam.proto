@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package auth.v1;
 
-option go_package = "github.com/himudit/ProtecX-auth-Proto/proto/iam/v1;iamv1";
+option go_package = "proto/iam/v1;iamv1";
 
 import "google/protobuf/timestamp.proto";
 
