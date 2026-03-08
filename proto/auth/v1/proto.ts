@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "google/protobuf/timestamp.proto";
+
+service AuthService{
+    rpc RegisterUser(RegisterRequest) returns(RegisterResponse);
+}
+
+message RegisterRequest{
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message RegisterResponse{
+    string accessToken = 1;
+    string refreshToken = 2;
+    User user = 3;
+}
+
+message User{
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    ProjectRole role = 4;
+    bool isVerified = 5;
+    google.protobuf.Timestamp lastLoginAt = 6;
+}
+
+enum ProjectRole {
+    OWNER = 0;
+    ADMIN = 1;
+    MEMBER = 2;
+}
