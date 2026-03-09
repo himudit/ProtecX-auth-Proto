@@ -8,6 +8,10 @@ import "google/protobuf/timestamp.proto";
 
 service AuthService{
     rpc RegisterUser(RegisterRequest) returns(RegisterResponse);
+    rpc LoginUser(LoginRequest) returns(LoginResponse);
+    rpc LogoutUser(LogoutRequest) returns(LogoutResponse);
+    rpc GetProfile(GetProfileRequest) returns(GetProfileResponse);
+    rpc RefreshSession(RefreshSessionRequest) returns(RefreshSessionResponse);
 }
 
 message RegisterRequest{
@@ -16,11 +20,42 @@ message RegisterRequest{
     string password = 3;
 }
 
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LogoutRequest {}
+
+message GetProfileRequest {}
+
+message RefreshSessionRequest {
+    string refreshToken = 1;
+}
+
 message RegisterResponse{
     string accessToken = 1;
     string refreshToken = 2;
     User user = 3;
 }
+
+message LoginResponse {
+    string accessToken = 1;
+    string refreshToken = 2;
+    User user = 3;
+}
+
+message LogoutResponse {}
+
+message GetProfileResponse {
+    User user = 1;
+}
+
+message RefreshSessionResponse {
+    string accessToken = 1;
+    string refreshToken = 2;
+}
+
 
 message User{
     string id = 1;
